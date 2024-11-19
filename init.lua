@@ -15,7 +15,7 @@ vim.opt.termguicolors = true
 -- Coc
 require("config.coc")
 
--- empty setup using defaults
+-- File Tree (Open by default)
 require("nvim-tree").setup()
 vim.cmd("NvimTreeOpen")
 
@@ -25,7 +25,22 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.lsp.start({
 			name = "c-lsp",
 			cmd = {"/home/jaso/code/lsp/c-lsp/run.sh"},
-			root_dir = vim.fs.root(ev.buf, {'src', 'examples'})
+			root_dir = vim.fs.root(ev.buf, {'src', 'examples'}),
+			trace = "messages"
 		})
 	end,
 })
+
+-- local lspconfig = require('lspconfig')
+
+-- lspconfig.c_lsp.setup{
+--   capabilities = capabilities,
+--   cmd = { "/home/jaso/code/lsp/c-lsp/run.sh" },
+--   filetypes = {"c"},
+--   init_options = {
+--     server = {
+--       logLevel = "debug"
+--     },
+--   },
+--   on_attach = on_attach,
+-- }
